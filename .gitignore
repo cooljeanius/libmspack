@@ -1,0 +1,14 @@
+*DS_Store*
+*deps/*.*o
+*.cache
+*~
+*log
+*.status
+libtool
+stamp-h*
+*.la
+*.o
+*.lo
+*libs
+*so_locations
+test/*libs
