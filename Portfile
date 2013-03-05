@@ -1,0 +1,21 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+
+name                libmspack
+version             0.3
+categories          replaceme
+platforms           darwin
+maintainers         replaceme
+license             replaceme
+
+description         replaceme
+
+long_description    replaceme
+
+homepage            replaceme
+master_sites        replaceme
+
+checksums           rmd160  12345 \
+                    sha256  6789a
