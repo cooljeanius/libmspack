@@ -7,10 +7,10 @@ name                libmspack
 version             0.3
 categories          replaceme
 platforms           darwin
-maintainers         replaceme
+maintainers         gwmail.gwu.edu:egall openmaintainer
 license             replaceme
 
-description         replaceme
+description         The library that powers cabextract
 
 long_description    replaceme
 
@@ -19,3 +19,4 @@ master_sites        replaceme
 
 checksums           rmd160  12345 \
                     sha256  6789a
+
