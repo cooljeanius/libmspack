@@ -10,8 +10,8 @@ pkgconfig_DATA = 	libmspack.pc
 dist-hook:
 	-rm -f $(distdir)/*.la
 
-ACLOCAL_AMFLAGS =	-I m4
-AM_CFLAGS =		-Wall -W -Wno-unused $(MSPACK_FLAGS)
+ACLOCAL_AMFLAGS =	-I m4 --install
+AM_CFLAGS =		-Wall -Wextra -Wno-unused $(MSPACK_FLAGS)
 AM_CPPFLAGS =		-I$(top_srcdir)/mspack -I$(top_srcdir)/test 
 
 lib_LTLIBRARIES =	libmspack.la
@@ -89,3 +89,7 @@ test_chmd_find_LDADD =	libmschmd.la
 test_chmd_order_SOURCES = test/chmd_order.c test/md5.c test/md5.h test/md5_fh.h \
 			test/error.h libmschmd.la
 test_chmd_order_LDADD = libmschmd.la
+
+clean-local:
+	-rm -rf *.dSYM || rmdir *.dSYM
+	-rm -rf test/*.dSYM || rmdir test/*.dSYM

@@ -12,3 +12,10 @@ stamp-h*
 *libs
 *so_locations
 test/*libs
+*.dSYM
+*/.dirstamp
+*/*/.dirstamp
+*/.deps/*.*o
+config.h
+Makefile
+libmspack.pc
