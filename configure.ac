@@ -1,7 +1,8 @@
 dnl# -*- Autoconf -*-
 dnl# Process this file with autoconf to produce a configure script.
-AC_PREREQ([2.59])
+AC_PREREQ([2.69.185-b502e])
 AC_INIT([libmspack],[0.3alpha],[kyzer@4u.net])
+AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([foreign subdir-objects])
 AM_MAINTAINER_MODE
@@ -17,7 +18,7 @@ AC_ARG_ENABLE([debug],
 if test "x${enable_debug}" = "xyes"; then
   AC_DEFINE([DEBUG],[1],[Turn debugging mode on?])
 fi
-AM_CONDITIONAL([DEBUG],[test x${enable_debug} = 'xyes'])
+AM_CONDITIONAL([DEBUG],[test x${enable_debug} = 'xyes'])dnl
 
 # Checks for programs.
 AM_PROG_AR
@@ -35,8 +36,23 @@ AC_EXEEXT
 PKG_PROG_PKG_CONFIG
 
 # Checks for header files.
-AC_HEADER_STDC
+# Autoupdate added the following line to ensure that your configure
+# script's behavior did not change.  It is probably safe to remove.
+AC_CHECK_INCLUDES_DEFAULT
 AC_CHECK_HEADERS([ctype.h limits.h stdlib.h wctype.h])dnl
+
+if test "x${ac_cv_header_stdint_h}" = "x"; then
+  test -z "${ac_cv_header_stdint_h}"
+  AC_CHECK_HEADERS([stdint.h])
+fi
+if test "x${ac_cv_header_strings_h}" = "x"; then
+  test -z "${ac_cv_header_strings_h}"
+  AC_CHECK_HEADERS([strings.h])
+fi
+if test "x${ac_cv_header_unistd_h}" = "x"; then
+  test -z "${ac_cv_header_unistd_h}"
+  AC_CHECK_HEADERS([unistd.h])
+fi
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
