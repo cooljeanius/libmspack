@@ -7,7 +7,7 @@ AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([foreign subdir-objects])
 AM_MAINTAINER_MODE
 AC_CONFIG_SRCDIR([mspack/mspack.h])
-AC_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
 AC_CANONICAL_HOST
 
 # --enable-debug option
@@ -22,6 +22,21 @@ AM_CONDITIONAL([DEBUG],[test x${enable_debug} = 'xyes'])dnl
 
 # Checks for programs.
 AM_PROG_AR
+if test "x${AR}" = "x"; then
+  test -z "${AR}" || unset AR
+  AC_CHECK_TOOLS([AR],[ar gar])dnl
+  ## might want to switch around these checks...
+  if test "x${ac_cv_prog_AR}" = "x"; then
+    test -z "${ac_cv_prog_AR}" || unset ac_cv_prog_AR
+    m4_ifdef([AC_PROG_AR],[
+      AC_PROG_AR
+    ],[
+      test -x "`which ar`" && echo "first ar in path is `which ar`"
+    ])
+  fi
+else
+  test -n "${AR}" && export AR
+fi
 AC_PROG_CXX
 AC_PROG_AWK
 AC_PROG_CC

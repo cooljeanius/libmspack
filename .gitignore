@@ -16,6 +16,9 @@ test/*libs
 */.dirstamp
 */*/.dirstamp
 */.deps/*.*o
+confdefs.h
 config.h
+conftest*
 Makefile
 libmspack.pc
+libmspack-*.*/*
