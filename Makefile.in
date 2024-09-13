@@ -536,6 +536,7 @@ test_chmd_order_SOURCES = test/chmd_order.c test/md5.c test/md5.h test/md5_fh.h 
 			test/error.h libmschmd.la
 
 test_chmd_order_LDADD = libmschmd.la
+DISTCLEANFILES = *~ autoscan.log
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -1160,6 +1161,7 @@ clean-generic:
 distclean-generic:
 	-$(am__rm_f) $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || $(am__rm_f) $(CONFIG_CLEAN_VPATH_FILES)
+	-$(am__rm_f) $(DISTCLEANFILES)
 	-$(am__rm_f) mspack/$(DEPDIR)/$(am__dirstamp)
 	-$(am__rm_f) mspack/$(am__dirstamp)
 	-$(am__rm_f) test/$(DEPDIR)/$(am__dirstamp)
@@ -1208,7 +1210,7 @@ distclean: distclean-am
 	-rm -f test/$(DEPDIR)/multifh.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-hdr distclean-libtool distclean-tags
+	distclean-hdr distclean-libtool distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -1312,19 +1314,19 @@ uninstall-am: uninstall-includeHEADERS uninstall-libLTLIBRARIES \
 	dist-all dist-bzip2 dist-gzip dist-hook dist-lzip dist-shar \
 	dist-tarZ dist-xz dist-zip dist-zstd distcheck distclean \
 	distclean-compile distclean-generic distclean-hdr \
-	distclean-libtool distclean-tags distcleancheck distdir \
-	distuninstallcheck dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-includeHEADERS install-info \
-	install-info-am install-libLTLIBRARIES install-man install-pdf \
-	install-pdf-am install-pkgconfigDATA install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags tags-am uninstall uninstall-am \
-	uninstall-includeHEADERS uninstall-libLTLIBRARIES \
-	uninstall-pkgconfigDATA
+	distclean-libtool distclean-local distclean-tags \
+	distcleancheck distdir distuninstallcheck dvi dvi-am html \
+	html-am info info-am install install-am install-data \
+	install-data-am install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-includeHEADERS install-info install-info-am \
+	install-libLTLIBRARIES install-man install-pdf install-pdf-am \
+	install-pkgconfigDATA install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-am uninstall uninstall-am uninstall-includeHEADERS \
+	uninstall-libLTLIBRARIES uninstall-pkgconfigDATA
 
 .PRECIOUS: Makefile
 
@@ -1335,6 +1337,10 @@ dist-hook:
 clean-local:
 	-rm -rf *.dSYM || rmdir *.dSYM
 	-rm -rf test/*.dSYM || rmdir test/*.dSYM
+distclean-local:
+	-rm -rf autom4te.cache || rmdir autom4te.cache
+	-rm -rf mspack/.deps || rmdir mspack/.deps
+	-rm -rf test/.deps || rmdir test/.deps
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

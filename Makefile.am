@@ -93,3 +93,9 @@ test_chmd_order_LDADD = libmschmd.la
 clean-local:
 	-rm -rf *.dSYM || rmdir *.dSYM
 	-rm -rf test/*.dSYM || rmdir test/*.dSYM
+
+DISTCLEANFILES = *~ autoscan.log
+distclean-local:
+	-rm -rf autom4te.cache || rmdir autom4te.cache
+	-rm -rf mspack/.deps || rmdir mspack/.deps
+	-rm -rf test/.deps || rmdir test/.deps
